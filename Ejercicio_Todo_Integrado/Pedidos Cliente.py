@@ -1,35 +1,45 @@
 import socket
-import random
-import time
-
-productos = [
-    "Mouse",
-    "Teclado",
-    "Monitor",
-    "Laptop"
-]
 
 cliente = socket.socket(
     socket.AF_INET,
     socket.SOCK_STREAM
 )
 
-cliente.connect(("10.175.163.76", 5000))
+cliente.connect(("localhost", 5000))
 
-cantidad_pedidos = random.randint(1, 5)
+print("Conectado al servidor")
 
-for i in range(cantidad_pedidos):
+productos = ["Mouse", "Teclado", "Monitor", "Laptop"]
 
-    producto = random.choice(productos)
+print("""
+Productos disponibles:
+- Mouse
+- Teclado
+- Monitor
+- Laptop
+""")
 
-    cantidad = random.randint(1, 3)
+
+
+while True:
+
+    producto = input("Producto: ")
+
+    if producto.lower() == "salir":
+        break
+
+    if producto not in productos:
+        print("Producto inválido")
+        continue
+
+    cantidad = input("Cantidad: ")
 
     mensaje = f"{producto},{cantidad}"
 
     cliente.send(mensaje.encode())
 
-    print(f"Pedido enviado: {mensaje}")
-
-    time.sleep(random.randint(1, 3))
+    print("Pedido enviado")
+    
 
 cliente.close()
+
