@@ -99,7 +99,7 @@ def procesador(id_procesador):
 
 
 servidor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-servidor.bind(("localhost", 12345))
+servidor.bind(("", 5000))
 servidor.listen(5)
 print("Servidor iniciando")
 

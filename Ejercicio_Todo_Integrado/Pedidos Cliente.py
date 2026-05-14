@@ -14,7 +14,7 @@ cliente = socket.socket(
     socket.SOCK_STREAM
 )
 
-cliente.connect(("localhost", 5000))
+cliente.connect(("10.175.163.76", 5000))
 
 cantidad_pedidos = random.randint(1, 5)
 
